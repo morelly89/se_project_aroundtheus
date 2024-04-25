@@ -37,6 +37,7 @@
   height: 24px;
   grid-area: button;
   margin: auto;
+  border-radius: 2px;
 }
 
 .profile__edit-button:hover {
@@ -49,7 +50,7 @@
   font-weight: 400;
   font-family: "Inter", "Arial", sans-serif;
   grid-area: description;
-  margin: 0;
+  margin-top: 7px;
 }
 
 .profile__add-button {
@@ -58,6 +59,7 @@
   height: 50px;
   grid-area: button;
   margin-left: auto;
+  border-radius: 2px;
 }
 
 .profile__add-button:hover {
