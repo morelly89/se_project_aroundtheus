@@ -124,6 +124,7 @@
 
   .profile__description {
     text-align: center;
+    margin-bottom: 14px;
   }
 
   .profile__edit-button {
