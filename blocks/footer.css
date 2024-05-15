@@ -1,5 +1,36 @@
+.footer {
+  padding: 67px 0 60px;
+}
+
 .footer__text {
   color: #545454;
-  margin: 67px 0 60px 0;
   max-width: 318px;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+@media screen and (max-width: 897px) {
+  .footer {
+    display: flex;
+    width: 564px;
+  }
+
+  .footer__text {
+    width: 564px;
+    padding: 48px 19px 36px;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .footer {
+    padding: 0;
+  }
+
+  .footer__text {
+    width: 100%;
+    padding: 0;
+    width: 282px;
+    height: 14px;
+  }
 }
