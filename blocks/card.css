@@ -1,7 +1,7 @@
 .card {
   display: flex;
   flex-direction: column;
-  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-family: "Inter";
 }
 
 .card__image {
@@ -24,7 +24,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-family: "Inter";
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
