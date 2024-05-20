@@ -17,8 +17,16 @@
   min-height: 100vh;
 }
 
-@media screen and (min-width: 320px) {
+@media screen and (max-width: 320px) {
   .page {
-    margin: 0 auto;
+    overflow-x: hidden;
+    height: 100vmin;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .page {
+    overflow-x: hidden;
+    height: 100vmin;
   }
 }
