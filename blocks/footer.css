@@ -17,8 +17,7 @@
 
   .footer__text {
     width: 564px;
-    padding: 48px 19px 36px;
-    margin: 0;
+    margin: 48px 19px 36px;
   }
 }
 
@@ -27,6 +26,7 @@
     margin: 0 auto;
     padding: 0;
     width: 282px;
+    overflow-x: hidden;
   }
 
   .footer__text {
@@ -37,6 +37,8 @@
 @media screen and (max-width: 320px) {
   .footer {
     width: 282px;
+    margin: 0;
+    overflow: hidden;
   }
 
   .footer__text {
