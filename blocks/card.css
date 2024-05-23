@@ -1,7 +1,7 @@
 .card {
   display: flex;
   flex-direction: column;
-  font-family: "Inter";
+  font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
 .card__image {
@@ -40,6 +40,6 @@
 }
 
 .card__like-button:hover {
-  opacity: 60%;
+  opacity: 50%;
   cursor: pointer;
 }
