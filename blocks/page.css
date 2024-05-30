@@ -19,14 +19,12 @@
 
 @media screen and (max-width: 580px) {
   .page {
-    overflow-x: hidden;
     height: 100vmin;
   }
 }
 
 @media screen and (max-width: 320px) {
   .page {
-    overflow-x: hidden;
     height: 100vmin;
   }
 }
