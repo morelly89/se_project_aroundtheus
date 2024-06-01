@@ -22,9 +22,3 @@
     height: 100vmin;
   }
 }
-
-@media screen and (max-width: 320px) {
-  .page {
-    height: 100vmin;
-  }
-}
