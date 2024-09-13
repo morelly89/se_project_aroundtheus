@@ -44,22 +44,19 @@
     </div>
     <!--edit modal-->
     <div class="modal" id="edit-modal">
-      <div class="modal__container modal__add-container">
-        <button
-          class="modal__close-button modal__add_close-button"
-          id="modal-close-button"
-        ></button>
+      <div class="modal__container modal__close">
+        <button class="modal__close-button" id="edit-close-button"></button>
         <p class="modal__heading">Edit profile</p>
         <form class="modal__form" name="profile-form">
           <input
-            class="modal__form-input"
+            class="modal__form_input"
             id="profile-title-input"
             type="text"
             name="title"
             placeholder="Jacques Cousteau"
           />
           <input
-            class="modal__form-input"
+            class="modal__form_input"
             id="profile-description-input"
             type="text"
             name="description"
@@ -71,40 +68,34 @@
     </div>
     <!--add modal-->
     <div class="modal" id="add-modal">
-      <div class="modal__add-container">
-        <button
-          class="modal__add_close-button"
-          id="modal-add-close-button"
-        ></button>
-        <p class="modal__add_heading">New Place</p>
-        <form class="modal__add_form" name="add-form" id="add-card-form">
+      <div class="modal__container modal__close">
+        <button class="modal__close-button"></button>
+        <p class="modal__heading">New Place</p>
+        <form class="modal__form" name="add-form" id="add-card-form">
           <input
-            class="modal__add_input"
+            class="modal__form_input"
             id="modal-add-input-title"
             type="text"
             name="title"
             placeholder="Title"
           />
           <input
-            class="modal__add_input"
+            class="modal__form_input"
             id="modal-add-input-url"
             type="text"
             name="url"
             placeholder="Image URL"
           />
-          <button class="modal__add_button">Create</button>
+          <button class="modal__button_add">Create</button>
         </form>
       </div>
     </div>
     <!--popup modal-->
-    <div class="modal popup_modal" id="popup-modal">
-      <div class="modal__add-container popup_modal_container">
-        <button
-          id="popup-modal-button"
-          class="modal__add_close-button"
-        ></button>
-        <img class="popup__image" alt="" />
-        <h3 class="popup__title"></h3>
+    <div class="modal" id="popup-modal">
+      <div class="modal__container_image_preview modal__close">
+        <button id="popup-modal-button" class="modal__close-button"></button>
+        <img class="modal__image" alt="" />
+        <h3 class="modal__image_description"></h3>
       </div>
     </div>
 
