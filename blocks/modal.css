@@ -8,11 +8,15 @@
   z-index: 555;
   display: flex;
   align-items: center;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.5s, opacity 0.5s ease-in-out;
 }
 
 .modal_opened {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
 }
 
 .modal__container {
@@ -52,7 +56,7 @@
   flex-direction: column;
 }
 
-.modal__form_input {
+.modal__form-input {
   margin-bottom: 30px;
   border-top: 1px;
   border-color: lightgray;
@@ -86,7 +90,7 @@
   cursor: pointer;
 }
 
-.modal__button_add {
+.modal__add-button {
   height: 50px;
   margin-top: 48px;
   width: 100%;
