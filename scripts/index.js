@@ -48,7 +48,9 @@ const previewModal = document.querySelector("#image-preview-modal");
 const previewModalImage = document.querySelector(".modal__image");
 const previewModalTitle = document.querySelector(".modal__image-description");
 const closeButtons = document.querySelectorAll(".modal__close-button");
-const modalImageContainer = document.querySelector(".modal__container_preview");
+const modalImageContainer = document.querySelector(
+  ".modal__container--preview"
+);
 
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
