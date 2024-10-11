@@ -51,7 +51,7 @@ const closeButtons = document.querySelectorAll(".modal__close-button");
 const modalImageContainer = document.querySelector(
   ".modal__container--preview"
 );
-
+modal = document.querySelectorAll(".modal");
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
@@ -141,4 +141,23 @@ addButton.addEventListener("click", () => {
 initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
   cardListEl.append(cardElement);
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    // Find the currently open modal
+    const openModal = document.querySelector(".modal_opened");
+    if (openModal) {
+      closePopup(openModal); // Close the open modal
+    }
+  }
+});
+
+modal.forEach((modalElement) => {
+  modalElement.addEventListener("click", (event) => {
+    // Check if the click happened outside the modal__container
+    if (!event.target.closest(".modal__container")) {
+      closePopup(modalElement); // Close the modal
+    }
+  });
 });
