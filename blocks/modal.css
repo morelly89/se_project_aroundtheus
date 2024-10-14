@@ -89,21 +89,6 @@
   cursor: pointer;
 }
 
-.modal__add-button {
-  height: 50px;
-  margin-top: 48px;
-  width: 100%;
-  border-radius: 2px;
-  background-color: black;
-  color: white;
-  font-family: "Inter", Arial, Helvetica, sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 21.78px;
-  text-align: center;
-  cursor: pointer;
-}
-
 .modal__container--preview {
   padding: 0;
   max-width: 75wh;
@@ -132,12 +117,12 @@
   display: block;
 }
 
-.popup__input_type_error {
+.modal__input_type_error {
   border-bottom: 2px solid #ff0000;
   outline: none;
 }
 
-.popup__error_visible {
+.modal__error_visible {
   display: block;
   color: #ff0000;
   font-size: 12px;
@@ -145,7 +130,7 @@
   margin: 0;
 }
 
-.popup__error {
+.modal__error {
   font-family: "Inter";
   font-size: 12px;
   font-weight: 400;
@@ -155,7 +140,7 @@
   opacity: 1;
 }
 
-.popup__button_disabled {
+.modal__button_disabled {
   opacity: 20%;
 }
 

@@ -5,7 +5,6 @@ function enableValidation(config) {
   forms.forEach((form) => {
     const inputs = Array.from(form.querySelectorAll(config.inputSelector)); // Get all input elements in the form
     const submitButton = form.querySelector(config.submitButtonSelector); // Submit button
-    const errorSpans = Array.from(form.querySelectorAll(".popup__error")); // Error spans for validation messages
 
     // Check input validity
     function checkValidity(input) {
@@ -65,10 +64,10 @@ function enableValidation(config) {
 
 // Call enableValidation with configuration
 enableValidation({
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".modal__button, .modal__add-button", // Allow both buttons
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
+  formSelector: ".modal__form",
+  inputSelector: ".modal__form-input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
 });

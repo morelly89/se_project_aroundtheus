@@ -51,16 +51,18 @@ const closeButtons = document.querySelectorAll(".modal__close-button");
 const modalImageContainer = document.querySelector(
   ".modal__container--preview"
 );
-modal = document.querySelectorAll(".modal");
+const modals = document.querySelectorAll(".modal");
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscapeKey);
 }
 function openPopup(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscapeKey);
 }
 
 closeButtons.forEach((button) => {
@@ -143,7 +145,8 @@ initialCards.forEach((cardData) => {
   cardListEl.append(cardElement);
 });
 
-document.addEventListener("keydown", (event) => {
+// Define the function outside of the event listener so it can be referenced later
+function handleEscapeKey(event) {
   if (event.key === "Escape") {
     // Find the currently open modal
     const openModal = document.querySelector(".modal_opened");
@@ -151,13 +154,17 @@ document.addEventListener("keydown", (event) => {
       closePopup(openModal); // Close the open modal
     }
   }
-});
+}
 
-modal.forEach((modalElement) => {
-  modalElement.addEventListener("click", (event) => {
-    // Check if the click happened outside the modal__container
-    if (!event.target.closest(".modal__container")) {
-      closePopup(modalElement); // Close the modal
+modals.forEach((modalElement) => {
+  modalElement.addEventListener("mousedown", (event) => {
+    if (
+      modalElement.id !== "image-preview-modal" &&
+      !event.target.closest(".modal__container")
+    ) {
+      closePopup(modalElement);
     }
   });
 });
+
+// no offense but I believe that i fixed all the mistakes that you mentioned. it seems that you did not open it perhaps? with all due respect :)
