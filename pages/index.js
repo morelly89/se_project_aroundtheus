@@ -1,9 +1,10 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import PopupWithForm from "../components/popupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
-import PopupWithForm from "../components/popupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -32,6 +33,7 @@ const initialCards = [
 ];
 
 const profileEditButton = document.querySelector("#profile-edit-button");
+const editProfileCloseBtn = document.querySelector("#edit-close-button");
 const editProfileModal = document.querySelector("#edit-modal");
 
 const profileTitle = document.querySelector(".profile__title");
@@ -93,8 +95,6 @@ const addCardWithForm = new PopupWithForm("#add-modal", (formData) => {
   const card = createCard(formData);
   section.addItem(card);
 });
-addCardWithForm.setEventListeners();
-popupWithImage.setEventListeners();
 
 const profileEditForm = new UserInfo({
   title: profileTitleInput,
@@ -105,26 +105,22 @@ const profileEditForm = new UserInfo({
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
-
-// function closePopup(modal) {
-//   modal.classList.remove("modal_opened");
-//   //document.removeEventListener("keydown", handleEscapeKey);
-// }
-
-// function openPopup(modal) {
-//   modal.classList.add("modal_opened");
-//   //document.addEventListener("keydown", handleEscapeKey);
-// }
-
-// closeButtons.forEach((button) => {
-//   const popup = button.closest(".modal");
-//   button.addEventListener("click", () => closePopup(popup));
-// });
+function openingProfileEditModal(modal) {
+  modal.classList.add("modal_opened");
+}
+function closingProfileEditModal(modal) {
+  modal.classList.remove("modal_opened");
+}
 
 const createCard = (data) => {
   return new Card(data, "#card-template", handleCardClick).getElement();
 };
 
+section.renderItems();
+profileFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
+addCardWithForm.setEventListeners();
+popupWithImage.setEventListeners();
 /* -------------------------------------------------------------------------- */
 /*                                  Handlers                                  */
 /* -------------------------------------------------------------------------- */
@@ -156,43 +152,14 @@ function handleAddSubmit(e) {
 /*                               Event Listeners                            */
 /* -------------------------------------------------------------------------- */
 
-// profileEditButton.addEventListener("click", () => {
-//   profileTitleInput.value = profileTitle.textContent;
-//   profileDescriptionInput.value = profileDescription.textContent;
-//   open(editProfileModal);
-// });
-
-// profileForm.addEventListener("submit", handleProfileEditSubmit);
-// addModalForm.addEventListener("submit", handleAddSubmit);
-
 addButton.addEventListener("click", () => {
   addCardWithForm.open();
-  // addCardFormValidator.toggleSubmitButton();
 });
 
-// function handleEscapeKey(event) {
-//   if (event.key === "Escape") {
-//     const openModal = document.querySelector(".modal_opened");
-//     if (openModal) {
-//       closePopup(openModal);
-//     }
-//   }
-// }
+profileEditButton.addEventListener("click", () => {
+  openingProfileEditModal(editProfileModal);
+});
 
-// modals.forEach((modal) => {
-//   modal.addEventListener("mousedown", (event) => {
-//     if (!modal.querySelector(".modal__containers").contains(event.target)) {
-//       closePopup(modal);
-//     }
-//   });
-// });
-
-section.renderItems();
-profileFormValidator.enableValidation();
-addCardFormValidator.enableValidation();
-
-profileEditButton.addEventListener("click", (event) => {
-  if (event.target("#edit-modal")) {
-    open("modal_opened");
-  }
+editProfileCloseBtn.addEventListener("click", () => {
+  closingProfileEditModal(editProfileModal);
 });
