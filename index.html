@@ -44,12 +44,12 @@
     </div>
     <!--edit profile modal-->
     <div class="modal" id="edit-modal">
-      <div class="modal__container">
+      <div class="modal__container modal__containers">
         <button class="modal__close-button" id="edit-close-button"></button>
         <p class="modal__heading">Edit profile</p>
-        <form class="modal__form popup__form" name="profile-form">
+        <form class="modal__form" name="profile-form" id="edit-form">
           <input
-            class="modal__form-input popup__input"
+            class="modal__form-input"
             id="profile-title-input"
             type="text"
             name="title"
@@ -58,9 +58,9 @@
             maxlength="40"
             placeholder="Jacques Cousteau"
           />
-          <span class="popup__error" id="profile-title-input-error"></span>
+          <span class="modal__error" id="profile-title-input-error"></span>
           <input
-            class="modal__form-input popup__input"
+            class="modal__form-input"
             id="profile-description-input"
             type="text"
             name="description"
@@ -70,11 +70,11 @@
             maxlength="200"
           />
           <span
-            class="popup__error"
+            class="modal__error"
             id="profile-description-input-error"
           ></span>
 
-          <button class="modal__button popup__button_disabled" type="submit">
+          <button class="modal__button modal__button_disabled" type="submit">
             save
           </button>
         </form>
@@ -82,41 +82,39 @@
     </div>
     <!--add card modal-->
     <div class="modal" id="add-modal">
-      <div class="modal__container">
+      <div class="modal__container modal__containers">
         <button class="modal__close-button"></button>
         <p class="modal__heading">New Place</p>
-        <form
-          class="modal__form popup__form"
-          name="add-form"
-          id="add-card-form"
-        >
+        <form class="modal__form" name="add-form" id="add-card-form">
           <input
-            class="modal__form-input popup__input"
+            class="modal__form-input"
             id="modal-add-input-title"
             type="text"
-            name="title"
+            name="name"
             placeholder="Title"
             minlength="1"
             maxlength="30"
             required
           />
-          <span class="popup__error" id="modal-add-input-title-error"></span>
+          <span class="modal__error" id="modal-add-input-title-error"></span>
           <input
-            class="modal__form-input popup__input"
+            class="modal__form-input"
             id="modal-add-input-url"
             type="url"
             required
-            name="url"
+            name="link"
             placeholder="Image URL"
           />
-          <span class="popup__error" id="modal-add-input-url-error"></span>
-          <button class="modal__add-button" type="submit">Create</button>
+          <span class="modal__error" id="modal-add-input-url-error"></span>
+          <button class="modal__button modal__button_disabled" type="submit">
+            Create
+          </button>
         </form>
       </div>
     </div>
     <!--image preview modal-->
     <div class="modal" id="image-preview-modal">
-      <div class="modal__container--preview">
+      <div class="modal__container--preview modal__containers">
         <button class="modal__close-button"></button>
         <img class="modal__image" alt="" />
         <h3 class="modal__image-description"></h3>
@@ -137,7 +135,8 @@
         </div>
       </li>
     </template>
-    <script src="./scripts/index.js"></script>
-    <script src="./scripts/validate.js"></script>
+    <script src="./pages/index.js" type="module"></script>
+    <script src="./components/Card.js" type="module"></script>
+    <script src="./components/FormValidator.js" type="module"></script>
   </body>
 </html>
