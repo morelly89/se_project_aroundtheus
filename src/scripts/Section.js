@@ -12,7 +12,6 @@ export default class Section {
   }
 
   addItem(element) {
-    const container = document.querySelector(this._containerSelector);
-    container.prepend(element);
+    document.querySelector(this._containerSelector).prepend(element);
   }
 }

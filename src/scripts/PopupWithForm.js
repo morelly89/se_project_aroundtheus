@@ -10,7 +10,6 @@ export default class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    this._popupForm.reset();
   }
 
   _getInputValues() {
@@ -33,6 +32,7 @@ export default class PopupWithForm extends Popup {
       event.preventDefault();
       const formData = this._getInputValues();
       this._handleFormSubmit(formData);
+      this._popupForm.reset();
       this.close();
     });
     //The setEventListeners() method of the PopupWithForm class should add a submit

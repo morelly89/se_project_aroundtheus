@@ -1,7 +1,7 @@
 import "../pages/index.css";
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import PopupWithForm from "./popupWithForm.js";
+import PopupWithForm from "./PopupWithForm.js";
 import PopupWithImage from "./PopupWithImage.js";
 import Section from "./Section.js";
 import UserInfo from "./UserInfo.js";
@@ -91,7 +91,7 @@ const section = new Section(
 const popupWithImage = new PopupWithImage("#image-preview-modal");
 
 popupWithImage.setEventListeners();
-const addCardWithForm = new PopupWithForm("#add-modal", (formData) => {
+const addCardModal = new PopupWithForm("#add-modal", (formData) => {
   const card = createCard(formData);
   section.addItem(card);
 });
@@ -101,10 +101,10 @@ const profileInfo = new UserInfo({
   description: ".profile__description",
 });
 
-const editForm = new PopupWithForm("#edit-modal", (formData) => {
+const profileModal = new PopupWithForm("#edit-modal", (formData) => {
   profileInfo.setUserInfo(formData);
 });
-editForm.setEventListeners();
+profileModal.setEventListeners();
 
 const createCard = (data) => {
   return new Card(data, "#card-template", handleCardClick).getElement();
@@ -116,41 +116,28 @@ const createCard = (data) => {
 section.renderItems();
 profileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
-addCardWithForm.setEventListeners();
+addCardModal.setEventListeners();
 popupWithImage.setEventListeners();
-
-/* -------------------------------------------------------------------------- */
-/*                                  Handlers                                  */
-/* -------------------------------------------------------------------------- */
 
 function handleCardClick(cardData) {
   popupWithImage.open(cardData);
 }
-
-function handleAddSubmit(e) {
-  e.preventDefault();
-
-  const name = addModalTitle;
-  const link = addModalUrl;
-
-  renderCard({ name: name.value, link: link.value });
-
-  addCardFormValidator.disableSubmitButton();
-  addModalForm.reset();
-}
+/* -------------------------------------------------------------------------- */
+/*                                  Handlers                                  */
+/* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
 /*                               Event Listeners                            */
 /* -------------------------------------------------------------------------- */
 
 addButton.addEventListener("click", () => {
-  addCardWithForm.open();
+  addCardModal.open();
 });
 
 profileEditButton.addEventListener("click", () => {
-  editForm.open();
+  profileModal.open();
 });
 
 editProfileCloseBtn.addEventListener("click", () => {
-  editForm.open();
+  profileModal.close();
 });
