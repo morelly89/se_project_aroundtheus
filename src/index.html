@@ -4,18 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around the U.S</title>
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="page__section header">
-        <img class="header__image" src="./images/Vector.svg" alt="logo image" />
+        <img
+          class="header__image"
+          src="<%=require('./images/Vector.svg')%>"
+          alt="logo image"
+        />
       </header>
       <main class="content">
         <section class="profile page__section">
           <img
             class="profile__image"
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="jacques cousteau photo"
           />
           <div class="profile__info">
@@ -135,8 +138,5 @@
         </div>
       </li>
     </template>
-    <script src="./pages/index.js" type="module"></script>
-    <script src="./components/Card.js" type="module"></script>
-    <script src="./components/FormValidator.js" type="module"></script>
   </body>
 </html>
