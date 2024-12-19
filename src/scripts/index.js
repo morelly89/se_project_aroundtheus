@@ -1,3 +1,4 @@
+import { initialCards, validationSettings } from "../../util/constants.js";
 import "../pages/index.css";
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
@@ -5,33 +6,6 @@ import PopupWithForm from "./PopupWithForm.js";
 import PopupWithImage from "./PopupWithImage.js";
 import Section from "./Section.js";
 import UserInfo from "./UserInfo.js";
-
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake House",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago de Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const editProfileCloseBtn = document.querySelector("#edit-close-button");
@@ -61,15 +35,6 @@ const closeButtons = document.querySelectorAll(".modal__close-button");
 const modalImageContainer = document.querySelector(
   ".modal__container--preview"
 );
-
-const validationSettings = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__form-input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
 
 const profileFormValidator = new FormValidator(validationSettings, profileForm);
 
@@ -122,9 +87,6 @@ popupWithImage.setEventListeners();
 function handleCardClick(cardData) {
   popupWithImage.open(cardData);
 }
-/* -------------------------------------------------------------------------- */
-/*                                  Handlers                                  */
-/* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
 /*                               Event Listeners                            */
@@ -136,8 +98,4 @@ addButton.addEventListener("click", () => {
 
 profileEditButton.addEventListener("click", () => {
   profileModal.open();
-});
-
-editProfileCloseBtn.addEventListener("click", () => {
-  profileModal.close();
 });
