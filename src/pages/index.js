@@ -1,11 +1,11 @@
 import { initialCards, validationSettings } from "../../util/constants.js";
 import "../pages/index.css";
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import PopupWithForm from "./PopupWithForm.js";
-import PopupWithImage from "./PopupWithImage.js";
-import Section from "./Section.js";
-import UserInfo from "./UserInfo.js";
+import Card from "../scripts/Card.js";
+import FormValidator from "../scripts/FormValidator.js";
+import PopupWithForm from "../scripts/PopupWithForm.js";
+import PopupWithImage from "../scripts/PopupWithImage.js";
+import Section from "../scripts/Section.js";
+import UserInfo from "../scripts/UserInfo.js";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const editProfileCloseBtn = document.querySelector("#edit-close-button");
@@ -97,5 +97,8 @@ addButton.addEventListener("click", () => {
 });
 
 profileEditButton.addEventListener("click", () => {
+  const userData = profileInfo.getUserInfo();
+  profileTitleInput.value = userData.title;
+  profileDescriptionInput.value = userData.description;
   profileModal.open();
 });
