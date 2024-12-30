@@ -103,3 +103,13 @@ profileEditButton.addEventListener("click", () => {
   profileDescriptionInput.value = userData.description;
   profileModal.open();
 });
+
+fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+  headers: {
+    authorization: "e2ed982e-7073-428a-82c0-3445ee97b908",
+  },
+})
+  .then((res) => res.json())
+  .then((result) => {
+    console.log(result);
+  });
