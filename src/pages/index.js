@@ -6,6 +6,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const editProfileCloseBtn = document.querySelector("#edit-close-button");
@@ -74,6 +75,15 @@ profileModal.setEventListeners();
 const createCard = (data) => {
   return new Card(data, "#card-template", handleCardClick).getElement();
 };
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "e2ed982e-7073-428a-82c0-3445ee97b908",
+    "Content-Type": "application/json",
+  },
+});
+
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
