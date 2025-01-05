@@ -38,6 +38,10 @@ export default class PopupWithForm extends Popup {
     //The setEventListeners() method of the PopupWithForm class should add a submit
     // event listener to the form and call the setEventListeners() method of the parent class.
   }
+
+  setSubmitAction(handleSubmit) {
+    this._handleFormSubmit = handleSubmit;
+  }
 }
 
 //Create an instance of the PopupWithForm class for each popup that contains a form,
