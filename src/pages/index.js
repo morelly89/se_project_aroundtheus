@@ -2,6 +2,7 @@ import { validationSettings } from "../../util/constants.js";
 import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import PopupWithDelete from "../components/PopupWithDelete.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
@@ -38,6 +39,8 @@ const modalImageContainer = document.querySelector(
   ".modal__container--preview"
 );
 
+const popupWithDelete = new PopupWithDelete("#card-delete-modal");
+
 const profileFormValidator = new FormValidator(validationSettings, profileForm);
 
 const addCardFormValidator = new FormValidator(
@@ -55,7 +58,12 @@ const api = new Api("https://around-api.en.tripleten-services.com/v1", {
 });
 
 const createCard = (data) => {
-  return new Card(data, "#card-template", handleCardClick).getElement();
+  return new Card(
+    data,
+    "#card-template",
+    handleCardClick,
+    handleDeleteClick
+  ).getElement();
 };
 
 const userInfo = new UserInfo({
@@ -97,21 +105,22 @@ const addCardModal = new PopupWithForm("#add-modal", (formData) => {
     .catch((err) => console.log(err));
 });
 
-let section;
+const section = new Section(
+  {
+    renderer: (cardData) => {
+      const card = createCard(cardData);
+      section.addItem(card);
+    },
+  },
+  ".cards__list"
+);
+
 api
   .getInitialCards()
   .then((data) => {
-    section = new Section(
-      {
-        items: data,
-        renderer: (cardData) => {
-          const card = createCard(cardData);
-          section.addItem(card);
-        },
-      },
-      ".cards__list"
-    );
-    section.renderItems();
+    console.log(data);
+
+    section.renderItems(data);
   })
   .catch((err) => console.log(err));
 
@@ -129,14 +138,28 @@ function handleCardClick(cardData) {
   popupWithImage.open(cardData);
 }
 
-// pass the id to the handler
-function handleDeleteClick(cardId) {
-  // open that delete modal
-  // call setSubmitAction
-  cardDeleteModal.setSubmitAction(() => {
-    // handle the deletion
-  });
+function handleDeleteClick(card) {
+  // Open the confirmation dialog
+
+  popupWithDelete.open(); // Open the delete confirmation modal
+
+  // Define the action to take when the user confirms deletion
+  const deleteAction = () => {
+    api
+      .deleteCard(card._id) // Use the API to delete the card by its unique _id
+      .then(() => {
+        // Select the card element by its unique _id (ensure it's a valid selector)
+
+        card.removeCard(); // Remove the card from the UI
+        popupWithDelete.close(); // Close the modal after successful deletion
+      })
+      .catch((err) => console.error("Error deleting card:", err)); // Handle any errors during deletion
+  };
+
+  // Set the submit action (deleteAction) for when the modal submit button is clicked
+  popupWithDelete.setSubmitAction(deleteAction);
 }
+
 /* -------------------------------------------------------------------------- */
 /*                               Event Listeners                            */
 /* -------------------------------------------------------------------------- */

@@ -44,17 +44,11 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(cardData),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject("Failed to add new card");
-      })
-      .catch((err) => {
-        console.log(err);
-        return Promise.reject(`Error: ${err}`);
-      });
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else return Promise.reject("Failed to add new card");
+    });
   }
 
   getInitialCards() {
@@ -72,8 +66,8 @@ export default class Api {
       });
   }
 
-  deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+  deleteCard(_id) {
+    return fetch(`${this._baseUrl}/cards/${_id}`, {
       method: "DELETE",
       headers: this._headers,
     })
@@ -85,6 +79,21 @@ export default class Api {
       })
       .catch((err) => {
         return Promise.reject(`Error: ${err}`);
+      });
+  }
+
+  addLike() {
+    return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .catch((err) => {
+        return Promise.reject(`Error ${err}`);
       });
   }
 }
