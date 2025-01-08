@@ -82,18 +82,10 @@ export default class Api {
       });
   }
 
-  addLike() {
+  addRemoveLikes(_id, isLiked) {
     return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
-      method: "PUT",
+      method: isLiked ? "PUT" : "DELETE", // If liked, PUT, otherwise DELETE
       headers: this._headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .catch((err) => {
-        return Promise.reject(`Error ${err}`);
-      });
+    }).then((res) => res.json());
   }
 }

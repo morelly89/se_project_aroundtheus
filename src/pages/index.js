@@ -62,7 +62,8 @@ const createCard = (data) => {
     data,
     "#card-template",
     handleCardClick,
-    handleDeleteClick
+    handleDeleteClick,
+    handleLikeClick
   ).getElement();
 };
 
@@ -158,6 +159,32 @@ function handleDeleteClick(card) {
 
   // Set the submit action (deleteAction) for when the modal submit button is clicked
   popupWithDelete.setSubmitAction(deleteAction);
+}
+
+function handleLikeClick(card) {
+  // Toggle the current like status based on the current state
+  const likeStatus = !card.isLiked; // If the card is liked, make it unliked, and vice versa
+
+  // Send the updated like status to the API
+  api
+    .addRemoveLikes(card._id, likeStatus)
+    .then((data) => {
+      // Update the card's like status locally with the response data
+      card.isLiked = data.isLiked; // Assuming the response contains `isLiked` field or similar
+
+      const cardLikeButton =
+        card._cardElement.querySelector(".card__like-button");
+
+      // Toggle the button's active state based on the new like status
+      if (card.isLiked) {
+        cardLikeButton.classList.add("card__like-button_active");
+      } else {
+        cardLikeButton.classList.remove("card__like-button_active");
+      }
+    })
+    .catch((err) => {
+      console.error("Error updating like status:", err);
+    });
 }
 
 /* -------------------------------------------------------------------------- */
