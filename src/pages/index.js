@@ -70,6 +70,7 @@ const createCard = (data) => {
 const userInfo = new UserInfo({
   title: ".profile__title",
   description: ".profile__description",
+  profilePic: ".profile__image",
 });
 
 const profileModal = new PopupWithForm("#edit-modal", (formData) => {
@@ -202,3 +203,14 @@ profileEditButton.addEventListener("click", async () => {
   profileDescriptionInput.value = userData.about;
   profileModal.open();
 });
+
+// api
+//   .updatingProfilePic(avatar)
+//   .then((res) => {
+//     if (res.ok) {
+//       return res.json();
+//     }
+//   })
+//   .then((data) => {
+//     console.log(data);
+//   });

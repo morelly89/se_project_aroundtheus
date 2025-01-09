@@ -88,4 +88,12 @@ export default class Api {
       headers: this._headers,
     }).then((res) => res.json());
   }
+
+  updatingProfilePic({ avatar }) {
+    return fetch(` ${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({ avatar }),
+    }).then((res) => res.json());
+  }
 }
