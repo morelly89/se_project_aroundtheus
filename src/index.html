@@ -16,15 +16,18 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <div class="profile__image-container">
-            <button class="profile__image-button"></button>
+          <button class="profile__avatar-button">
             <img
               class="profile__image"
               src="<%=require('./images/jacques-cousteau.jpg')%>"
-              alt="jacques cousteau photo"
+              alt="Jacques Cousteau photo"
             />
-          </div>
-
+            <img
+              class="profile__edit-icon"
+              src="<%=require('./images/edit-profile-vector.svg')%>"
+              alt="Profile hover icon"
+            />
+          </button>
           <div class="profile__info">
             <h1 class="profile__title">Jaques Cousteau</h1>
             <button
@@ -49,6 +52,37 @@
         <p class="footer__text">&#169; 2024 Around The U.S.</p>
       </footer>
     </div>
+    <!-- profile-modal -->
+
+    <div class="modal" id="profile-avatar-modal">
+      <div class="modal__container">
+        <p class="modal__heading">Change profile picture</p>
+        <form class="modal__form">
+          <input
+            class="modal__form-input"
+            id="profile-avatar-input"
+            type="text"
+            name="title"
+            required
+            minlength="2"
+            maxlength="40"
+            placeholder="aaa"
+          />
+        </form>
+        <button
+          class="modal__close-button"
+          id="profile-modal-close-btn"
+        ></button>
+        <button
+          type="submit"
+          class="modal__button"
+          id="profile-modal-submit-btn"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+
     <!--edit profile modal-->
     <div class="modal" id="edit-modal">
       <div class="modal__container modal__containers">

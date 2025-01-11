@@ -1,17 +1,23 @@
 export default class UserInfo {
-  constructor({ title, description, profilePic }, handleProfilePicClick) {
+  constructor({ avatar, title, description }) {
     this._title = document.querySelector(title);
     this._description = document.querySelector(description);
-    this._profilePic = document.querySelector(profilePic);
-    this._closeBtn = document.querySelector("#edit-close-button");
-    this._profileImage = document.querySelector(".profile__image");
-    this._handleProfilePicClick = handleProfilePicClick;
+    this._avatar = document.querySelector(avatar);
+    this._profileImageButton = document.querySelector(".profile__image-button");
+    this._profileModalCloseButton = document.querySelector(
+      ".profile-modal-close-btn"
+    );
+    this._profileAvatarInput = document.querySelector("#profile-avatar-input");
+    this._profileImageSubmitBtnv = document.querySelector(
+      "#profile-modal-submit-btn"
+    );
   }
 
   getUserInfo() {
     const objectInfo = {
       title: this._title.textContent,
       description: this._description.textContent,
+      avatar: this._avatar.src,
     };
     return objectInfo;
   }
@@ -21,16 +27,13 @@ export default class UserInfo {
     this._description.textContent = userData.about;
   }
 
-  handleProfilePicClick() {
-    this._profilePic(this);
-  }
-
-  setEventListeners() {
-    this._profileImage.addEventListener("mouseenter", () => {
-      this._profileImage.classList.add(".hover-icon");
-    });
-    this._profileImage.addEventListener("mouseleave", () => {
-      this._profileImage.classList.add(".hover-icon");
-    });
+  // create a setAvatar method
+  setAvatar() {
+    const newAvatarUrl = this._profileAvatarInput.value;
+    if (newAvatarUrl) {
+      this._avatar.src = newAvatarUrl;
+    } else {
+      ("Enter a valid url");
+    }
   }
 }

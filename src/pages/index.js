@@ -11,6 +11,9 @@ import "../pages/index.css";
 
 const cardDeleteModal = document.querySelector("#card-delete-modal");
 const profileEditButton = document.querySelector("#profile-edit-button");
+const profileAvatarModalButton = document.querySelector(
+  ".profile__avatar-button"
+);
 const editProfileCloseBtn = document.querySelector("#edit-close-button");
 const modalDeleteButton = document.querySelector(".card__delete-button");
 const editProfileModal = document.querySelector("#edit-modal");
@@ -68,9 +71,9 @@ const createCard = (data) => {
 };
 
 const userInfo = new UserInfo({
+  avatar: ".profile__image",
   title: ".profile__title",
   description: ".profile__description",
-  profilePic: ".profile__image",
 });
 
 const profileModal = new PopupWithForm("#edit-modal", (formData) => {
@@ -87,6 +90,63 @@ const profileModal = new PopupWithForm("#edit-modal", (formData) => {
     })
     .catch((err) => console.log(err));
 });
+
+// const profileAvatarModal = new PopupWithForm(
+//   "#profile-avatar-modal",
+//   (formData) => {
+//     const updatedAvatar = {
+//       avatar: formData.avatar,
+//     };
+
+//     api
+//       .updatingProfilePic(updatedAvatar.avatar)
+//       .then((avatar) => {
+//         profileAvatarModal.setAvatar(updatedAvatar);
+//       })
+//       .catch((err) => {
+//         console.error(`Error loading profile avatar ${err}`);
+//       });
+//   }
+// );
+
+// Reference to the profile avatar modal and form
+const profileAvatarModal = new PopupWithForm(
+  "#profile-avatar-modal",
+  (formData) => {
+    const updatedAvatar = { avatar: formData.avatar };
+    api
+      .updatingProfilePic(updatedAvatar.avatar)
+      .then(() => {
+        profileAvatarModal.setAvatar(updatedAvatar);
+        profileAvatarModal.close();
+      })
+      .catch((err) => {
+        console.error(`Error loading profile avatar ${err}`);
+      });
+  }
+);
+
+// Get the submit button using its class
+const submitButton = document.querySelector("#profile-modal-submit-btn");
+
+// Add an event listener to the button
+submitButton.addEventListener("click", (event) => {
+  // Prevent the default form submission
+  event.preventDefault();
+
+  // Get the form element
+  const form = document.querySelector("#profile-avatar-input");
+
+  // Manually trigger form submission
+
+  form.addEventListener("submit", () => {});
+});
+
+profileAvatarModalButton.addEventListener("click", () => {
+  profileAvatarModal.open();
+});
+
+profileAvatarModal.setEventListeners();
 
 api
   .loadUserInfo()
@@ -135,7 +195,7 @@ addCardFormValidator.enableValidation();
 addCardModal.setEventListeners();
 popupWithImage.setEventListeners();
 profileModal.setEventListeners();
-
+profileAvatarModal.setEventListeners();
 function handleCardClick(cardData) {
   popupWithImage.open(cardData);
 }
@@ -203,14 +263,3 @@ profileEditButton.addEventListener("click", async () => {
   profileDescriptionInput.value = userData.about;
   profileModal.open();
 });
-
-// api
-//   .updatingProfilePic(avatar)
-//   .then((res) => {
-//     if (res.ok) {
-//       return res.json();
-//     }
-//   })
-//   .then((data) => {
-//     console.log(data);
-//   });
