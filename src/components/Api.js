@@ -90,10 +90,16 @@ export default class Api {
   }
 
   updatingProfilePic(avatar) {
-    return fetch(` ${this._baseUrl}/users/me/${avatar}`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify(avatar),
-    }).then((res) => res.json());
+      body: JSON.stringify({
+        avatar: avatar, // Directly send the avatar URL
+      }),
+    })
+      .then((res) =>
+        res.ok ? res.json() : Promise.reject(`Error: ${res.statusText}`)
+      )
+      .catch((err) => console.error("Error updating profile picture:", err));
   }
 }

@@ -56,30 +56,29 @@
 
     <div class="modal" id="profile-avatar-modal">
       <div class="modal__container">
-        <p class="modal__heading">Change profile picture</p>
-        <form class="modal__form">
-          <input
-            class="modal__form-input"
-            id="profile-avatar-input"
-            type="text"
-            name="title"
-            required
-            minlength="2"
-            maxlength="40"
-            placeholder="aaa"
-          />
-        </form>
         <button
           class="modal__close-button"
           id="profile-modal-close-btn"
         ></button>
-        <button
-          type="submit"
-          class="modal__button"
-          id="profile-modal-submit-btn"
-        >
-          Save
-        </button>
+        <p class="modal__heading">Change profile picture</p>
+        <form class="modal__form" id="profile-avatar-modal-form">
+          <input
+            class="modal__form-input"
+            id="profile-avatar-input"
+            type="url"
+            name="avatar"
+            required
+            placeholder="Enter image link"
+          />
+          <span class="modal__error" id="profile-avatar-input-error"></span>
+          <button
+            type="submit"
+            class="modal__button"
+            id="profile-modal-submit-btn"
+          >
+            Save
+          </button>
+        </form>
       </div>
     </div>
 

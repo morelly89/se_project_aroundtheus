@@ -1,16 +1,9 @@
 export default class UserInfo {
-  constructor({ avatar, title, description }) {
+  constructor({ title, description, link }) {
     this._title = document.querySelector(title);
     this._description = document.querySelector(description);
-    this._avatar = document.querySelector(avatar);
+    this._avatar = document.querySelector(link);
     this._profileImageButton = document.querySelector(".profile__image-button");
-    this._profileModalCloseButton = document.querySelector(
-      ".profile-modal-close-btn"
-    );
-    this._profileAvatarInput = document.querySelector("#profile-avatar-input");
-    this._profileImageSubmitBtnv = document.querySelector(
-      "#profile-modal-submit-btn"
-    );
   }
 
   getUserInfo() {
@@ -28,12 +21,11 @@ export default class UserInfo {
   }
 
   // create a setAvatar method
-  setAvatar() {
-    const newAvatarUrl = this._profileAvatarInput.value;
-    if (newAvatarUrl) {
-      this._avatar.src = newAvatarUrl;
+  setAvatar(link) {
+    if (link) {
+      this._avatar.src = link;
     } else {
-      ("Enter a valid url");
+      console.error("Enter a valid url");
     }
   }
 }
