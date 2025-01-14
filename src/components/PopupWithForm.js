@@ -34,21 +34,17 @@ export default class PopupWithForm extends Popup {
 
       // Change the button text and disable it while processing
       this._submitButton.textContent = "Saving...";
-      console.log("hi hi");
       this._submitButton.disabled = true;
-      debugger;
       const formData = this._getInputValues();
       this._handleFormSubmit(formData)
         .then(() => {
           // After submission completes, reset button state
           this._submitButton.textContent = "Submit";
-          console.log("hi second");
           this._submitButton.disabled = false;
           this._popupForm.reset();
           this.close();
         })
         .catch((error) => {
-          console.log("hi third");
           // If there's an error, reset the button state
           this._submitButton.textContent = "Submit";
           this._submitButton.disabled = false;

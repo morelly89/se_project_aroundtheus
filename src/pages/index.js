@@ -106,7 +106,7 @@ const profileModal = new PopupWithForm("#edit-modal", (formData) => {
     about: formData.description,
   };
 
-  api
+  return api // same game here
     .editingProfile(updatedProfileInfo)
     .then((updatedProfileInfo) => {
       userInfo.setUserInfo(updatedProfileInfo);
@@ -126,7 +126,7 @@ api
   });
 
 const addCardModal = new PopupWithForm("#add-modal", (formData) => {
-  api
+  return api //forgot to return api
     .addingNewCard(formData)
     .then((cardData) => {
       const card = createCard(cardData);
