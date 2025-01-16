@@ -78,8 +78,8 @@ const createCard = (data) => {
 };
 
 const userInfo = new UserInfo({
-  title: ".profile__title",
-  description: ".profile__description",
+  name: ".profile__title",
+  about: ".profile__description",
   link: ".profile__image",
 });
 
@@ -92,12 +92,8 @@ const profileAvatarModal = new PopupWithForm(
       .updatingProfilePic(avatar) // Pass the avatar directly
       .then(({ avatar }) => {
         userInfo.setAvatar(avatar); // Update avatar image in the DOM
-        profileAvatarModal.close(); // Close the modal
         const submitButton = document.querySelector("#avatar-modal-submit-btn");
         submitButton.disabled = true;
-      })
-      .catch((err) => {
-        console.error(`Error fetching profile avatar: ${err}`);
       });
   }
 );
@@ -113,8 +109,7 @@ const profileModal = new PopupWithForm("#edit-modal", (formData) => {
     .then((updatedProfileInfo) => {
       userInfo.setUserInfo(updatedProfileInfo);
       profileModal.close();
-    })
-    .catch((err) => console.log(err));
+    });
 });
 
 api
@@ -134,8 +129,7 @@ const addCardModal = new PopupWithForm("#add-modal", (formData) => {
       const card = createCard(cardData);
       section.addItem(card);
       addCardModal.close();
-    })
-    .catch((err) => console.log(err));
+    });
 });
 
 const section = new Section(
@@ -204,7 +198,7 @@ function handleLikeClick(card) {
       // Update the card's like status locally with the response data
       card.isLiked = data.isLiked; // Assuming the response contains `isLiked` field or similar
 
-      card.toggleLikeButton(data);
+      card.toggleLikeButton();
     })
     .catch((err) => {
       console.error("Error updating like status:", err);
@@ -220,8 +214,8 @@ addButton.addEventListener("click", () => {
   addCardModal.open();
 });
 
-profileEditButton.addEventListener("click", async () => {
-  const userData = await api.loadUserInfo();
+profileEditButton.addEventListener("click", () => {
+  const userData = userInfo.getUserInfo();
   profileTitleInput.value = userData.name;
   profileDescriptionInput.value = userData.about;
   profileModal.open();

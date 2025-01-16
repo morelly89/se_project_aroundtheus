@@ -7,10 +7,6 @@ export default class PopupWithDelete extends Popup {
       "#card-delete-submit-btn"
     ); // Submit button inside modal
     this._setSubmitAction = () => {}; // Placeholder for the submit action function
-    this._closeButton = this._popupElement.querySelector(
-      ".profile-modal-close-btn"
-    ); // Assuming close button selector is correct
-
     // Bind methods to the class instance
     this._handleSubmit = this._handleSubmit.bind(this);
   }

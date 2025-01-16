@@ -85,7 +85,7 @@ export default class Card {
     }
   }
 
-  toggleLikeButton(data) {
+  toggleLikeButton() {
     this._likeButton.classList.toggle("card__like-button_active");
   }
 }

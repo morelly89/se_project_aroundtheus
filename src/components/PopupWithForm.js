@@ -10,10 +10,6 @@ export default class PopupWithForm extends Popup {
     // which PopupWithForm calls when the form's submit event fires.
   }
 
-  close() {
-    super.close();
-  }
-
   _getInputValues() {
     const inputValues = {};
     const inputs = Array.from(
@@ -31,7 +27,7 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
     this._popupForm.addEventListener("submit", (event) => {
       event.preventDefault();
-
+      const oldText = this._submitButton.textContent;
       // Change the button text and disable it while processing
       this._submitButton.textContent = "Saving...";
       this._submitButton.disabled = true;
@@ -39,16 +35,17 @@ export default class PopupWithForm extends Popup {
       this._handleFormSubmit(formData)
         .then(() => {
           // After submission completes, reset button state
-          this._submitButton.textContent = "Submit";
-          this._submitButton.disabled = false;
+
           this._popupForm.reset();
           this.close();
         })
         .catch((error) => {
           // If there's an error, reset the button state
-          this._submitButton.textContent = "Submit";
-          this._submitButton.disabled = false;
           console.error("Form submission failed", error);
+        })
+        .finally(() => {
+          this._submitButton.textContent = oldText;
+          this._submitButton.disabled = false;
         });
     });
     // Adds a submit event listener to the form and calls the setEventListeners() method of the parent class.

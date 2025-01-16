@@ -8,11 +8,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
-    })
-      .then((res) => this._responseOk(res))
-      .catch((err) => {
-        return Promise.reject(`Error ${err}`);
-      });
+    }).then((res) => this._responseOk(res));
   }
 
   editingProfile(profileInfo) {
@@ -20,11 +16,7 @@ export default class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(profileInfo),
-    })
-      .then((res) => this._responseOk(res))
-      .catch((err) => {
-        return Promise.reject(`Error: ${err}`);
-      });
+    }).then((res) => this._responseOk(res));
   }
 
   addingNewCard({ name, link }) {
@@ -42,22 +34,14 @@ export default class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    })
-      .then((res) => this._responseOk(res))
-      .catch((err) => {
-        return Promise.reject(`Error: ${err}`);
-      });
+    }).then((res) => this._responseOk(res));
   }
 
   deleteCard(_id) {
     return fetch(`${this._baseUrl}/cards/${_id}`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then((res) => this._responseOk(res))
-      .catch((err) => {
-        return Promise.reject(`Error: ${err}`);
-      });
+    }).then((res) => this._responseOk(res));
   }
 
   addRemoveLikes(_id, isLiked) {
@@ -74,15 +58,13 @@ export default class Api {
       body: JSON.stringify({
         avatar: avatar, // Directly send the avatar URL
       }),
-    })
-      .then((res) => this._responseOk(res))
-      .catch((err) => console.error("Error updating profile picture:", err));
+    }).then((res) => this._responseOk(res));
   }
 
   _responseOk(res) {
     if (res.ok) {
       return res.json();
     }
-    res.Promise.reject(`"Error: ${res.statusText}"`);
+    return Promise.reject(`Error: ${res.statusText}`);
   }
 }
