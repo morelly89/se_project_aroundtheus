@@ -1,34 +1,30 @@
-export default class PopupWithDelete {
+import Popup from "./Popup";
+
+export default class PopupWithDelete extends Popup {
   constructor(modalSelector) {
-    this._modal = document.querySelector(modalSelector); // Modal element
-    this._submitButton = this._modal.querySelector("#card-delete-submit-btn"); // Submit button inside modal
+    super(modalSelector);
+    this._submitButton = this._popupElement.querySelector(
+      "#card-delete-submit-btn"
+    ); // Submit button inside modal
     this._setSubmitAction = () => {}; // Placeholder for the submit action function
-    this._closeButton = this._modal.querySelector(".profile-modal-close-btn"); // Assuming close button selector is correct
+    this._closeButton = this._popupElement.querySelector(
+      ".profile-modal-close-btn"
+    ); // Assuming close button selector is correct
 
     // Bind methods to the class instance
     this._handleSubmit = this._handleSubmit.bind(this);
-    this._handleOverlayClick = this._handleOverlayClick.bind(this);
-    this._handleEscapeKeyPress = this._handleEscapeKeyPress.bind(this);
   }
 
   open() {
-    this._modal.classList.add("modal_opened"); // Open the modal
+    super.open();
     if (this._setSubmitAction) {
-      this._submitButton.addEventListener("click", this._handleSubmit); // Attach submit listener only if action is set
-    }
-
-    // Attach overlay click and escape key listeners
-    this._modal.addEventListener("click", this._handleOverlayClick);
-    document.addEventListener("keydown", this._handleEscapeKeyPress);
+      this._submitButton.addEventListener("click", this._handleSubmit);
+    } // Attach submit listener only if action is set
   }
 
   close() {
-    this._modal.classList.remove("modal_opened"); // Close the modal
+    super.close();
     this._submitButton.removeEventListener("click", this._handleSubmit); // Remove submit listener
-
-    // Remove overlay click and escape key listeners
-    this._modal.removeEventListener("click", this._handleOverlayClick);
-    document.removeEventListener("keydown", this._handleEscapeKeyPress);
   }
 
   setSubmitAction(action) {
@@ -38,18 +34,6 @@ export default class PopupWithDelete {
   _handleSubmit() {
     if (this._setSubmitAction) {
       this._setSubmitAction(); // Call the submit action if it exists
-    }
-  }
-
-  _handleOverlayClick(event) {
-    if (event.target === this._modal) {
-      this.close();
-    }
-  }
-
-  _handleEscapeKeyPress(event) {
-    if (event.key === "Escape") {
-      this.close();
     }
   }
 }

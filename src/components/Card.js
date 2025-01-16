@@ -19,18 +19,6 @@ export default class Card {
     this._handleEscClose = this._handleEscClose.bind(this); // Bind the method here
   }
 
-  // Open the modal
-  open() {
-    this._modal.classList.add("modal_opened");
-    document.addEventListener("keydown", this._handleEscClose); // Listen for ESC key
-  }
-
-  // Close the modal
-  close() {
-    this._modal.classList.remove("modal_opened");
-    document.removeEventListener("keydown", this._handleEscClose); // Stop listening for ESC
-  }
-
   // Remove the card element
   removeCard() {
     this._cardElement.remove();
@@ -71,7 +59,7 @@ export default class Card {
     ); // Access the modal close button
 
     this._likeButton.addEventListener("click", () => {
-      this._likeButton.classList.toggle("card__like-button_active");
+      // this._likeButton.classList.toggle("card__like-button_active");
       this._handleLikeClick(this); // Pass the card instance to the like handler
     });
 
@@ -95,5 +83,9 @@ export default class Card {
     if (event.key === "Escape") {
       this.close();
     }
+  }
+
+  toggleLikeButton(data) {
+    this._likeButton.classList.toggle("card__like-button_active");
   }
 }

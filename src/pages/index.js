@@ -93,6 +93,8 @@ const profileAvatarModal = new PopupWithForm(
       .then(({ avatar }) => {
         userInfo.setAvatar(avatar); // Update avatar image in the DOM
         profileAvatarModal.close(); // Close the modal
+        const submitButton = document.querySelector("#avatar-modal-submit-btn");
+        submitButton.disabled = true;
       })
       .catch((err) => {
         console.error(`Error fetching profile avatar: ${err}`);
@@ -149,8 +151,6 @@ const section = new Section(
 api
   .getInitialCards()
   .then((data) => {
-    console.log(data);
-
     section.renderItems(data);
   })
   .catch((err) => console.log(err));
@@ -204,15 +204,7 @@ function handleLikeClick(card) {
       // Update the card's like status locally with the response data
       card.isLiked = data.isLiked; // Assuming the response contains `isLiked` field or similar
 
-      const cardLikeButton =
-        card._cardElement.querySelector(".card__like-button");
-
-      // Toggle the button's active state based on the new like status
-      if (card.isLiked) {
-        cardLikeButton.classList.add("card__like-button_active");
-      } else {
-        cardLikeButton.classList.remove("card__like-button_active");
-      }
+      card.toggleLikeButton(data);
     })
     .catch((err) => {
       console.error("Error updating like status:", err);
@@ -233,8 +225,10 @@ profileEditButton.addEventListener("click", async () => {
   profileTitleInput.value = userData.name;
   profileDescriptionInput.value = userData.about;
   profileModal.open();
+  profileFormValidator.disableSubmitButton();
 });
 
 profileAvatarModalButton.addEventListener("click", () => {
   profileAvatarModal.open();
+  profilePictureModalValidator.disableSubmitButton();
 });

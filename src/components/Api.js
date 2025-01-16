@@ -8,14 +8,11 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject("Failed to fetch initial card").catch((err) => {
+    })
+      .then((res) => this._responseOk(res))
+      .catch((err) => {
         return Promise.reject(`Error ${err}`);
       });
-    });
   }
 
   editingProfile(profileInfo) {
@@ -24,12 +21,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify(profileInfo),
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject("Failed to fetch edit profile");
-      })
+      .then((res) => this._responseOk(res))
       .catch((err) => {
         return Promise.reject(`Error: ${err}`);
       });
@@ -44,23 +36,14 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(cardData),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else return Promise.reject("Failed to add new card");
-    });
+    }).then((res) => this._responseOk(res));
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject("Failed to fetch initial cards");
-      })
+      .then((res) => this._responseOk(res))
       .catch((err) => {
         return Promise.reject(`Error: ${err}`);
       });
@@ -71,12 +54,7 @@ export default class Api {
       method: "DELETE",
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject("Failed to delete card");
-      })
+      .then((res) => this._responseOk(res))
       .catch((err) => {
         return Promise.reject(`Error: ${err}`);
       });
@@ -86,7 +64,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
       method: isLiked ? "PUT" : "DELETE", // If liked, PUT, otherwise DELETE
       headers: this._headers,
-    }).then((res) => res.json());
+    }).then((res) => this._responseOk(res));
   }
 
   updatingProfilePic(avatar) {
@@ -97,9 +75,14 @@ export default class Api {
         avatar: avatar, // Directly send the avatar URL
       }),
     })
-      .then((res) =>
-        res.ok ? res.json() : Promise.reject(`Error: ${res.statusText}`)
-      )
+      .then((res) => this._responseOk(res))
       .catch((err) => console.error("Error updating profile picture:", err));
+  }
+
+  _responseOk(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    res.Promise.reject(`"Error: ${res.statusText}"`);
   }
 }
