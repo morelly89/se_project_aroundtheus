@@ -160,6 +160,7 @@ popupWithImage.setEventListeners();
 profileAvatarModal.setEventListeners();
 profileModal.setEventListeners();
 popupWithImage.setEventListeners();
+popupWithDelete.setEventListeners();
 
 function handleCardClick(cardData) {
   popupWithImage.open(cardData);
