@@ -63,9 +63,9 @@ export default class Card {
       this._handleLikeClick(this); // Pass the card instance to the like handler
     });
 
-    modalCloseButton.addEventListener("click", () => {
-      this.close(); // Close modal when clicking close button
-    });
+    // modalCloseButton.addEventListener("click", () => {
+    //   this.close(); // Close modal when clicking close button
+    // });
 
     this._handleImageClick(); // Handle image click
   }
