@@ -16,7 +16,7 @@ export default class Card {
     this.cardTemplate =
       document.querySelector(cardTemplateSelector).content.firstElementChild;
     this._modal = document.querySelector("#card-delete-modal");
-    this._handleEscClose = this._handleEscClose.bind(this); // Bind the method here
+    this._handleEscClose = this._handleEscClose.bind(this); /
   }
 
   // Remove the card element
@@ -30,7 +30,7 @@ export default class Card {
     this._cardElement = this.cardTemplate.cloneNode(true);
     const cardImageEl = this._cardElement.querySelector(".card__image");
     const cardTitleEl = this._cardElement.querySelector(".card__title");
-    this._likeButton = this._cardElement.querySelector(".card__like-button"); // Assign it here
+    this._likeButton = this._cardElement.querySelector(".card__like-button"); 
     this._deleteBtn = this._cardElement.querySelector(".card__delete-button");
 
     cardImageEl.src = this._link;
