@@ -92,8 +92,6 @@ const profileAvatarModal = new PopupWithForm(
       .updatingProfilePic(avatar) // Pass the avatar directly
       .then(({ avatar }) => {
         userInfo.setAvatar(avatar); // Update avatar image in the DOM
-        const submitButton = document.querySelector("#avatar-modal-submit-btn");
-        submitButton.disabled = true;
       });
   }
 );
@@ -220,10 +218,10 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = userData.name;
   profileDescriptionInput.value = userData.about;
   profileModal.open();
-  profileFormValidator.disableSubmitButton();
+  profileFormValidator.toggleSubmitButton();
 });
 
 profileAvatarModalButton.addEventListener("click", () => {
   profileAvatarModal.open();
-  profilePictureModalValidator.disableSubmitButton();
+  profilePictureModalValidator.toggleSubmitButton();
 });

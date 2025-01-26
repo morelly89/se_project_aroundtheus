@@ -15,8 +15,6 @@ export default class Card {
     this._handleLikeClick = handleLikeClick;
     this.cardTemplate =
       document.querySelector(cardTemplateSelector).content.firstElementChild;
-    this._modal = document.querySelector("#card-delete-modal");
-    this._handleEscClose = this._handleEscClose.bind(this); /
   }
 
   // Remove the card element
@@ -30,7 +28,7 @@ export default class Card {
     this._cardElement = this.cardTemplate.cloneNode(true);
     const cardImageEl = this._cardElement.querySelector(".card__image");
     const cardTitleEl = this._cardElement.querySelector(".card__title");
-    this._likeButton = this._cardElement.querySelector(".card__like-button"); 
+    this._likeButton = this._cardElement.querySelector(".card__like-button");
     this._deleteBtn = this._cardElement.querySelector(".card__delete-button");
 
     cardImageEl.src = this._link;
@@ -54,18 +52,10 @@ export default class Card {
       this._handleDeleteClick(this); // Pass the card instance to the delete handler
     });
 
-    const modalCloseButton = this._modal.querySelector(
-      "#card-delete-close-btn"
-    ); // Access the modal close button
-
     this._likeButton.addEventListener("click", () => {
       // this._likeButton.classList.toggle("card__like-button_active");
       this._handleLikeClick(this); // Pass the card instance to the like handler
     });
-
-    // modalCloseButton.addEventListener("click", () => {
-    //   this.close(); // Close modal when clicking close button
-    // });
 
     this._handleImageClick(); // Handle image click
   }
@@ -76,13 +66,6 @@ export default class Card {
     cardImageEl.addEventListener("click", () => {
       this._handleCardClick({ name: this._name, link: this._link });
     });
-  }
-
-  // Handle ESC key to close the modal
-  _handleEscClose(event) {
-    if (event.key === "Escape") {
-      this.close();
-    }
   }
 
   toggleLikeButton() {
