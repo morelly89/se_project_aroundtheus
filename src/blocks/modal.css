@@ -144,6 +144,15 @@
   opacity: 20%;
 }
 
+.modal_delete {
+  visibility: hidden;
+  max-width: 430px;
+}
+
+.modal__delete-container {
+  background: #ffffff;
+}
+
 @media screen and (max-width: 597px) {
   .modal__container {
     max-width: 238px;

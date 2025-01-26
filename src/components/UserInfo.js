@@ -1,20 +1,30 @@
 export default class UserInfo {
-  constructor({ title, description }) {
-    this._title = document.querySelector(title);
-    this._description = document.querySelector(description);
-    this._closeBtn = document.querySelector("#edit-close-button");
+  constructor({ name, about, link }) {
+    this._name = document.querySelector(name);
+    this._about = document.querySelector(about);
+    this._avatar = document.querySelector(link);
   }
 
   getUserInfo() {
     const objectInfo = {
-      title: this._title.textContent,
-      description: this._description.textContent,
+      name: this._name.textContent,
+      about: this._about.textContent,
+      avatar: this._avatar.src,
     };
     return objectInfo;
   }
 
   setUserInfo(userData) {
-    this._title.textContent = userData.title;
-    this._description.textContent = userData.description;
+    this._name.textContent = userData.name;
+    this._about.textContent = userData.about;
+  }
+
+  // create a setAvatar method
+  setAvatar(link) {
+    if (link) {
+      this._avatar.src = link;
+    } else {
+      console.error("Enter a valid url");
+    }
   }
 }

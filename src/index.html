@@ -16,11 +16,18 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            class="profile__image"
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="jacques cousteau photo"
-          />
+          <button class="profile__avatar-button">
+            <img
+              class="profile__image"
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
+              alt="Jacques Cousteau photo"
+            />
+            <img
+              class="profile__edit-icon"
+              src="<%=require('./images/edit-profile-vector.svg')%>"
+              alt="Profile hover icon"
+            />
+          </button>
           <div class="profile__info">
             <h1 class="profile__title">Jaques Cousteau</h1>
             <button
@@ -45,6 +52,36 @@
         <p class="footer__text">&#169; 2024 Around The U.S.</p>
       </footer>
     </div>
+    <!-- profile-modal -->
+
+    <div class="modal" id="profile-avatar-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close-button"
+          id="profile-modal-close-btn"
+        ></button>
+        <p class="modal__heading">Change profile picture</p>
+        <form class="modal__form" id="profile-avatar-modal-form">
+          <input
+            class="modal__form-input"
+            id="profile-avatar-input"
+            type="url"
+            name="avatar"
+            required
+            placeholder="Enter image link"
+          />
+          <span class="modal__error" id="profile-avatar-input-error"></span>
+          <button
+            type="submit"
+            class="modal__button"
+            id="avatar-modal-submit-btn"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+
     <!--edit profile modal-->
     <div class="modal" id="edit-modal">
       <div class="modal__container modal__containers">
@@ -121,6 +158,17 @@
         <button class="modal__close-button"></button>
         <img class="modal__image" alt="" />
         <h3 class="modal__image-description"></h3>
+      </div>
+    </div>
+
+    <!-- card delete modal -->
+    <div class="modal" id="card-delete-modal">
+      <div class="modal__container">
+        <button class="modal__close-button" id="card-delete-close-btn"></button>
+        <p class="modal__heading">Are you sure?</p>
+        <button type="submit" class="modal__button" id="card-delete-submit-btn">
+          Yes
+        </button>
       </div>
     </div>
 
